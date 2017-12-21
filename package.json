@@ -1,6 +1,6 @@
 {
   "name": "redux-harmony",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Bring harmony to your redux actions.",
   "main": "lib/redux-harmony.pure.js",
   "keywords": [
