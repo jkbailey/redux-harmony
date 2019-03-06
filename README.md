@@ -38,6 +38,46 @@ Updates an object if it exists (by `id`) in the array.
       - **TYPE** *(string)* The constant for this action
       - **go** *(function)* The action creator to dispatch
 
+# Action Object
+```js
+// LOADING
+{
+  type: 'ACTION_LOADING',
+  args: [<Arguments>],
+  status: {
+    loading: true,
+    error: false
+  }
+}
+```
+```js
+// SUCCESS
+{
+  type: 'ACTION_LOADING',
+  args: [<Arguments>],
+  data: <Response>
+  status: {
+    loading: false,
+    error: false,
+    lastSuccess: <Date>
+  }
+}
+```
+```js
+// ERROR
+{
+  type: 'ACTION_LOADING',
+  args: [<Arguments>],
+  error: <Error>,
+  status: {
+    loading: false,
+    error: true,
+    lastError: <Date>
+  }
+}
+```
+
+
 # Usage
 ```js
 // actions/payment.js
@@ -58,23 +98,17 @@ import { makePayment } from '../actions/payment';
 const payment = (state = {}, action) => {
 	switch (action.type) {
     case makePayment.LOADING:
-      return {
-        ...state,
-        loading: true
-      }
     case makePayment.ERROR:
       return {
         ...state,
-        loading: false,
-        error: true
+        ...action.status
       }
-		case makePayment.SUCCESS:
-			return {
-				...state,
+    case makePayment.SUCCESS:
+    	return {
+    		...state,
         ...action.data,
-        loading: false,
-        error: false
-			}
+        ...action.status
+    	}
     default:
       return state
 	}
@@ -95,25 +129,18 @@ import { connect } from 'react-redux'
 import { makePayment } from '../actions/payment';
 
 class MakePayment extends React.Component {
-  constructor(props) {
-    super(props);
-    this.makePayment = this.makePayment.bind(this);
-  }
 
-  makePayment() {
-    this.props.makePayment(this.props.payment);
-  }
+  makePayment = () => this.props.makePayment(this.props.payment)
 
-  render() {
-    return (
-      <View>
-        <Button
-          onPress={this.makePayment}
-          text="Pay Now"
-        />
-      </View>
-    );
-  }
+  render = () => (
+    <View>
+      <Button
+        onPress={this.makePayment}
+        text="Pay Now"
+      />
+    </View>
+  )
+
 }
 
 // Connect to store
