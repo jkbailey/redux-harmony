@@ -12,7 +12,7 @@ or
 $ npm install -s redux-harmony
 ```
 
-## Functions
+# Functions
 ```js
 createAsyncAction(namespace, promise)
 ```
@@ -38,11 +38,11 @@ Updates an object if it exists (by `id`) in the array.
       - **TYPE** *(string)* The constant for this action
       - **go** *(function)* The action creator to dispatch
 
-# Action Object
+# Action Objects
 ```js
 // LOADING
 {
-  type: 'ACTION_LOADING',
+  type: '[namespace]_LOADING',
   args: [<Arguments>],
   status: {
     loading: true,
@@ -53,7 +53,7 @@ Updates an object if it exists (by `id`) in the array.
 ```js
 // SUCCESS
 {
-  type: 'ACTION_LOADING',
+  type: '[namespace]_SUCCESS',
   args: [<Arguments>],
   data: <Response>
   status: {
@@ -66,7 +66,7 @@ Updates an object if it exists (by `id`) in the array.
 ```js
 // ERROR
 {
-  type: 'ACTION_LOADING',
+  type: '[namespace]_ERROR',
   args: [<Arguments>],
   error: <Error>,
   status: {
