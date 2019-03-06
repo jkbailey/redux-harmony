@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jkbailey/redux-harmony.svg?branch=master)](https://travis-ci.org/jkbailey/redux-harmony)
+
 # redux-harmony
 Bring harmony to your redux actions, requires `redux-thunk` middleware
 
